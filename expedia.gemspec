@@ -14,4 +14,8 @@ Gem::Specification.new do |gem|
   gem.name          = "expedia"
   gem.require_paths = ["lib"]
   gem.version       = Expedia::VERSION
+
+  gem.add_development_dependency "rake", "~> 10.0.3"
+  gem.add_development_dependency "webmock", "~> 1.8.0"
+  gem.add_development_dependency "vcr", "~> 2.3.0"
 end
