@@ -1,3 +1,4 @@
+require "expedia/client"
 require "expedia/version"
 
 module Expedia
