@@ -60,7 +60,9 @@ module Expedia
 
     # snake_cases the response
     def rubify_response(response)
-      modify_hash_keys(response) {|k| k.to_s.underscore.to_sym }
+      modify_hash_keys(response) {|k|
+        k.to_s.underscore.gsub(/\@/, "").to_sym
+      }
     end
 
     # Modifies hash keys based on the given block
