@@ -8,23 +8,23 @@ module Expedia
   class Client
     # {http://developer.ean.com/docs/read/hotel_list Expedia Documentation}
     #
-    # @param params [Hash] Query parameters to pass with the request
-    def self.hotel_list(params={})
-      make_request("list", :hotel_list_response, params)
+    # @param query [Hash] Query parameters to pass with the request
+    def self.hotel_list(query={})
+      make_request("list", :hotel_list_response, query)
     end
 
     # {http://developer.ean.com/docs/read/hotel_info Expedia Documentation}
     #
-    # @param params [Hash] Query parameters to pass with the request
-    def self.hotel_info(params={})
-      make_request("info", :hotel_information_response, params)
+    # @param query [Hash] Query parameters to pass with the request
+    def self.hotel_info(query={})
+      make_request("info", :hotel_information_response, query)
     end
 
     # {http://developer.ean.com/docs/read/room_avail Expedia Documentation}
     #
-    # @param params [hash] Query parameters to pass with the request
-    def self.room_avail(params={})
-      make_request("avail", :hotel_room_availability_response, params)
+    # @param query [hash] Query parameters to pass with the request
+    def self.room_avail(query={})
+      make_request("avail", :hotel_room_availability_response, query)
     end
 
     private
@@ -33,17 +33,17 @@ module Expedia
     #
     # @param endpoint [String] The API endpoint to hit
     # @param root [Symbol] The name of the root element in the response
-    # @param params [Hash] Query parameters to pass with the request
+    # @param query [Hash] Query parameters to pass with the request
     # @param method [Symbol] HTTP method to use for this request
     # @param secure [Bool] Specifies whether or not to use SSL
-    def self.make_request(endpoint, root, params={}, method=:get, secure=false)
-      params[:api_key] = Expedia.configuration.api_key
-      params[:cid] = Expedia.configuration.cid
-      params[:minor_rev] = Expedia.configuration.minor_rev
-      params[:sig] = generate_signature if Expedia.configuration.shared_secret
-      params = Helpers.requestify_hash(params)
+    def self.make_request(endpoint, root, query={}, method=:get, secure=false)
+      query[:api_key] = Expedia.configuration.api_key
+      query[:cid] = Expedia.configuration.cid
+      query[:minor_rev] = Expedia.configuration.minor_rev
+      query[:sig] = generate_signature if Expedia.configuration.shared_secret
+      query = Helpers.requestify_hash(query)
 
-      response = Request.make(endpoint, params, method, secure)
+      response = Request.make(endpoint, query, method, secure)
       parsed = Helpers.rubify_hash(JSON.parse(response.body))[root]
 
       return parsed unless parsed.has_key?(:ean_ws_error)
