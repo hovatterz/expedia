@@ -27,6 +27,14 @@ module Expedia
       make_request("avail", :hotel_room_availability_response, query)
     end
 
+    # {http://developer.ean.com/docs/read/book_reservation Expedia Documentation}
+    #
+    # @param query [hash] Query parameters to pass with the request
+    def self.book_reservation(query={})
+      make_request("res", :hotel_room_reservation_response, query, :post,
+                  true, "book.")
+    end
+
     private
 
     # Makes a request to an endpoint and returns the response data
@@ -43,6 +51,7 @@ module Expedia
       query[:cid] = Expedia.configuration.cid
       query[:minor_rev] = Expedia.configuration.minor_rev
       query[:sig] = generate_signature if Expedia.configuration.shared_secret
+
       query = Helpers.requestify_hash(query)
 
       response = Request.make(endpoint, query, method, secure, subdomain)

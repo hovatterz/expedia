@@ -20,3 +20,15 @@ Expedia.configure do |c|
   c.shared_secret = "REPLACEME"
   c.minor_rev     = 4
 end
+
+TEST_DATA = {
+  :first_name => "Test Booking",
+  :last_name => "Test Booking",
+  :email => "zackhovatter@gmail.com",
+  :home_phone => "7045245698",
+  :credit_card_type => "CA",
+  :credit_card_number => "5401999999999999",
+  :credit_card_identifier => "123",
+  :credit_card_expiration_month => "03",
+  :credit_card_expiration_year => "2020"
+}
