@@ -14,8 +14,15 @@ module Expedia
                   subdomain="")
       scheme = secure ? "https://" : "http://"
 
+      options = { }
+      if method == :post
+        options[:body] = query
+      else
+        options[:query] = query
+      end
+
       HTTParty.send(method, scheme + subdomain + BASE_URI + endpoint,
-                    :query => query)
+                    options)
     end
   end
 end
