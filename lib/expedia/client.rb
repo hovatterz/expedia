@@ -20,11 +20,18 @@ module Expedia
       @shared_secret = shared_secret
     end
 
-    # Fetches a list of hotels
+    # {http://developer.ean.com/docs/read/hotel_list Expedia Documentation}
     #
     # @param params [Hash] Query parameters to pass with the request
     def hotel_list(params={})
       make_request("list", :hotel_list_response, params)
+    end
+
+    # {http://developer.ean.com/docs/read/hotel_info Expedia Documentation}
+    #
+    # @param params [Hash] Query parameters to pass with the request
+    def hotel_info(params={})
+      make_request("info", :hotel_information_response, params)
     end
 
     private
