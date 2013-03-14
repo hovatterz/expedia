@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Zack Hovatter"]
   gem.email         = ["zackhovatter@gmail.com"]
   gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.summary       = %q{Expedia API wrapper for Ruby}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)

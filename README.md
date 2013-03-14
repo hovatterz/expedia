@@ -1,6 +1,6 @@
 # Expedia
 
-TODO: Write a gem description
+Expedia API wrapper for Ruby
 
 ## Installation
 
@@ -19,6 +19,23 @@ Or install it yourself as:
 ## Usage
 
 TODO: Write usage instructions here
+
+Example usage:
+```ruby
+require "expedia"
+
+client = Expedia::Client.new("55505", "shazpjd62spew9wbacw943ps", "vbk3WMXU")
+
+response = client.hotel_list(:destination_string => "Charlotte, NC")
+response[:hotel_list][:hotel_summary].each do |hotel|
+  puts hotel[:hotel_id]
+end
+```
+
+## Tests
+
+Edit `spec/spec_helper` and add your affiliate information (cid, API key,
+and shared secret key) then run `rake test`.
 
 ## Contributing
 
