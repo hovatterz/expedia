@@ -20,6 +20,13 @@ module Expedia
       make_request("info", :hotel_information_response, params)
     end
 
+    # {http://developer.ean.com/docs/read/room_avail Expedia Documentation}
+    #
+    # @param params [hash] Query parameters to pass with the request
+    def self.room_avail(params={})
+      make_request("avail", :hotel_room_availability_response, params)
+    end
+
     private
 
     # Makes a request to an endpoint and returns the response data
