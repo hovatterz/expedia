@@ -18,7 +18,7 @@ Expedia.configure do |c|
   c.cid           = "REPLACEME"
   c.api_key       = "REPLACEME"
   c.shared_secret = "REPLACEME"
-  c.minor_rev     = 4
+  c.minor_rev     = 22
 end
 
 TEST_DATA = {
