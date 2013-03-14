@@ -14,8 +14,9 @@ VCR.configure do |c|
   }
 end
 
-EAN_CID           = "REPLACEME"
-EAN_API_KEY       = "REPLACEME"
-EAN_SHARED_SECRET = "REPLACEME"
-
-$client = Expedia::Client.new(EAN_CID, EAN_API_KEY, EAN_SHARED_SECRET)
+Expedia.configure do |c|
+  c.cid           = "REPLACEME"
+  c.api_key       = "REPLACEME"
+  c.shared_secret = "REPLACEME"
+  c.minor_rev     = 4
+end

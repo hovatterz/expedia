@@ -1,3 +1,4 @@
+require "expedia/configuration"
 require "expedia/helpers"
 require "expedia/request"
 require "expedia/client"

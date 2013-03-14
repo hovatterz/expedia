@@ -24,9 +24,13 @@ Example usage:
 ```ruby
 require "expedia"
 
-client = Expedia::Client.new("55505", "shazpjd62spew9wbacw943ps", "vbk3WMXU")
+Expedia.configure do |c|
+  c.cid = "CHANGEME"
+  c.api_key = "CHANGEME"
+  c.shared_secret = "CHANGEME"
+end
 
-response = client.hotel_list(:destination_string => "Charlotte, NC")
+response = Expedia::Client.hotel_list(:destination_string => "Charlotte, NC")
 response[:hotel_list][:hotel_summary].each do |hotel|
   puts hotel[:hotel_id]
 end
