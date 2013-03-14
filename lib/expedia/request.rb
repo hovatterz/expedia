@@ -8,11 +8,14 @@ module Expedia
     # @param query [Hash] Query parameters to pass with the request
     # @param method [Symbol] HTTP method to use for this request
     # @param secure [Bool] Specifies whether or not to use SSL
+    # @param subdomain [String] Subdomain to prepend to the base uri
     # @return [HTTParty::Response] the response for the request
-    def self.make(endpoint, query={}, method=:get, secure=false)
+    def self.make(endpoint, query={}, method=:get, secure=false,
+                  subdomain="")
       scheme = secure ? "https://" : "http://"
 
-      HTTParty.send(method, scheme + BASE_URI + endpoint, :query => query)
+      HTTParty.send(method, scheme + subdomain + BASE_URI + endpoint,
+                    :query => query)
     end
   end
 end

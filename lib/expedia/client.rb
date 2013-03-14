@@ -36,14 +36,16 @@ module Expedia
     # @param query [Hash] Query parameters to pass with the request
     # @param method [Symbol] HTTP method to use for this request
     # @param secure [Bool] Specifies whether or not to use SSL
-    def self.make_request(endpoint, root, query={}, method=:get, secure=false)
+    # @param subdomain [String] Subdomain to prepend to the base uri
+    def self.make_request(endpoint, root, query={}, method=:get,
+                          secure=false, subdomain="")
       query[:api_key] = Expedia.configuration.api_key
       query[:cid] = Expedia.configuration.cid
       query[:minor_rev] = Expedia.configuration.minor_rev
       query[:sig] = generate_signature if Expedia.configuration.shared_secret
       query = Helpers.requestify_hash(query)
 
-      response = Request.make(endpoint, query, method, secure)
+      response = Request.make(endpoint, query, method, secure, subdomain)
       parsed = Helpers.rubify_hash(JSON.parse(response.body))[root]
 
       return parsed unless parsed.has_key?(:ean_ws_error)
