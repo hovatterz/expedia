@@ -18,8 +18,6 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
-
 Example usage:
 ```ruby
 require "expedia"
@@ -36,7 +34,11 @@ response[:hotel_list][:hotel_summary].each do |hotel|
 end
 ```
 
-## Tests
+### Documentation
+
+Just say `yard` and open `doc/index.html`.
+
+### Tests
 
 Edit `spec/spec_helper` and add your affiliate information (cid, API key,
 and shared secret key) then run `rake test`.

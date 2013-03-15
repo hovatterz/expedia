@@ -4,7 +4,7 @@ require File.expand_path('../lib/expedia/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Zack Hovatter"]
   gem.email         = ["zackhovatter@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
+  gem.description   = %q{Expedia API wrapper for Ruby}
   gem.summary       = %q{Expedia API wrapper for Ruby}
   gem.homepage      = ""
 
