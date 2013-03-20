@@ -3,7 +3,20 @@ require "httparty"
 require "json"
 
 module Expedia
-  class ExpediaError < StandardError; end
+  class ExpediaError < StandardError
+    attr_accessor :handling, :category, :presentation_message,
+      :verbose_message
+
+    def initialize(handling, category, presentation_message,
+                   verbose_message)
+      super(verbose_message)
+
+      self.handling = handling
+      self.category = category
+      self.presentation_message = presentation_message
+      self.verbose_message = verbose_message
+    end
+  end
 
   class Client
     # {http://developer.ean.com/docs/read/hotel_list Expedia Documentation}
@@ -58,7 +71,10 @@ module Expedia
       parsed = Helpers.rubify_hash(JSON.parse(response.body))[root]
 
       return parsed unless parsed.has_key?(:ean_ws_error)
-      raise ExpediaError.new(parsed[:ean_ws_error][:verbose_message])
+      error = parsed[:ean_ws_error]
+      raise ExpediaError.new(error[:handling], error[:category],
+                             error[:presentation_message],
+                             error[:verbose_message])
     end
 
     # Generates a signature used to sign requests to the API
