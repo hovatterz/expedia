@@ -1,6 +1,6 @@
 module Expedia
   class Request
-    BASE_URI = "api.ean.com/ean-services/rs/hotel/v3/"
+    BASE_URI = "dev.api.ean.com/ean-services/rs/hotel/v3/"
 
     # Makes a HTTParty request and returns the response
     #
